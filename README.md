@@ -4,24 +4,32 @@ A suite of basic models for EMR data predictions.
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+Base Forecast includes deep learning models to aid clinical and care management
+teams evaluate and act upon risks to patient health. By applying machine learning
+to population-specific data sets, care teams can quickly identify as risk
+patients.
+
+Base Forecast includes two primary components for patient health predictions:
+
+* **Dx** prediction of patient's next Diagnosis
+* **Admissions** prediction if patient is at risk for hospital admission within
+the next 30 days
 
 ## Getting Started
 
+
 ### Dependencies
 
-* PyTorch
-* numpy
 
-### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+### Running Careforecast
 
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
+* Pre Processing
+* Loading and Spitting Data
+* Training Model
+* Evaluate for Accuracy
+* Test on Data Set
+* Predict or Deploy
 ```
 code blocks for commands
 ```
