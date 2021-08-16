@@ -20,7 +20,11 @@ the next 30 days
 
 ### Dependencies
 
+* pandas
 
+### Setup
+
+* `mkdir data` and add training/test data here
 
 ### Running Careforecast
 
