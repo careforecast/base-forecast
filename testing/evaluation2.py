@@ -28,10 +28,4 @@ def infer(test_df,model_path="save_model/model.pkl"):
         1:"Please Admit"
     }
     return [define[x] for x in y_pred]
-                                    
-                                    
-                                      
-                                    
-                            
-        
-
+     

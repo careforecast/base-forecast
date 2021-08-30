@@ -5,7 +5,7 @@ from tqdm import tqdm
 import pandas as pd
 from sklearn.utils import resample
 from sklearn.utils import shuffle
-
+import sys
 
 def clean_data(path):
     print("process start..")
@@ -15,21 +15,25 @@ def clean_data(path):
                             names=['PatientID','AdmissionID','PrimaryDiagnosisCode','PrimaryDiagnosisDescription'], skiprows=1, sep='\t')
     df_pop_table=pd.read_csv(f'{path}/PatientCorePopulatedTable.txt', 
                              names=['PatientID','PatientGender','PatientDateOfBirth','PatientRace','PatientMaritalStatus','PatientLanguage','PatientPopulationPercentageBelowPoverty'], skiprows=1, sep='\t')
-
     path_csv="data/process/csv_dir"
     os.makedirs(path_csv, exist_ok = True) 
     pid=pd.unique(df_admi_table['PatientID']).tolist()
     raw=pd.DataFrame({"PatientID":[],'AdmissionID':[],'AdmissionStartDate':[],'AdmissionEndDate':[],'new':[]})
-    
     for i in tqdm(pid):
         _df=df_admi_table[df_admi_table['PatientID']==i]
-        _df=_df.sort_values(by = ['AdmissionID']) 
+        _df=_df.sort_values(by = ['AdmissionID'])
         if len(_df)<=1:
             pass
         else:
+            print(_df)
             p=_df['AdmissionStartDate'].tolist()
+            print(p)
             p.append(p.pop(0))
+            print(p)
             _df['new']=p
+            print(_df)
+            print(_df[:-1])
+            sys.exit()
             _df[:-1].to_csv(f"{path_csv}/{i}.csv",index=False)
 
     ar=[]
@@ -72,6 +76,7 @@ def preprocessing(df,days,feature):
     df['Age'] = [relativedelta(a, b).years for a, b in zip( df['AdmissionEndDate'],df['PatientDateOfBirth'])]
     df.dropna(inplace=True)
     df = shuffle(df)
+    print(df['Target'].value_counts())
     return df[feature]
 
 
