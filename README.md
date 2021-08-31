@@ -21,6 +21,7 @@ the next 30 days
 ### Dependencies
 
 * pandas
+* conda install -c conda-forge imbalanced-learn
 
 ### Setup
 
